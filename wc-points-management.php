@@ -1,7 +1,7 @@
 <?php 
 /**
  * Plugin Name: WooCommerce Points Management
- * Plugin URI: https://github.com/AwesomeLezf/wc-pont-menagment.git
+ * Plugin URI: https://github.com/AwesomeLezf/WooCommerce-Points-Management
  * Description: Plugin to manage loyal points
  * Version: 1.0
  * Author: Marcin Kowalski
