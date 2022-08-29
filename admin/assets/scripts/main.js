@@ -12,9 +12,12 @@ window.addEventListener("load", () => {
       debounce(() => {
         results.forEach((item) => {
           if (item.dataset.user.includes(search.value)) {
-            item.classList.remove("scale-0", "opacity-0", "mt-[-39.5px]");
+            item.classList.add("grid");
+            item.classList.add("mb-2");
+            item.classList.remove("hidden", "scale-0", "opacity-0");
           } else {
-            item.classList.add("scale-0", "opacity-0", "mt-[-39.5px]");
+            item.classList.add("hidden", "scale-0", "opacity-0");
+            item.classList.remove("grid");
           }
         });
       }, 200)

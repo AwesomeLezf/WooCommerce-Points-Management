@@ -3,7 +3,7 @@ module.exports = {
   important: false,
   separator: ":",
   content: ["**/**/*.php", "**/**/**/*.php", "scripts/*.js", "scripts/**/*.js"],
-  safelist: ["scale-0", "opacity-0", "mt-[-39.5px]"],
+  safelist: ["hidden", "scale-0", "opacity-0", "mt-[-39.5px]"],
   theme: {
     screens: {
       xxsm: "380px",
