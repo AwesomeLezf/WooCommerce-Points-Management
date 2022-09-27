@@ -12,12 +12,15 @@ if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     
     define('WCP_LAND_DIR', plugin_dir_path(__FILE__).'languages/');
 
+    //Require files
+    require_once('includes/SimpleXLSX.php');
+
     // Includes with created objects
     include_once(plugin_dir_path(__FILE__).'../woocommerce/woocommerce.php');
     include_once('includes/wc-points-management.php');
     include_once('includes/wcp-class-database-menager.php');
     include_once('includes/wcp-woocommerce-integration.php');    
-    
+
 function initPlugin(){
     //Create new Wc_Points_Menagment
     new Wc_Points_Menagment();

@@ -188,7 +188,7 @@ if( ! class_exists('Wc_Points_Menagment') ) :
          *
          * Assign point to user
          *
-         * @date	02/07/2022
+         * @date	27/09/2022
          * @since	1.0.0
          *
          * @param	void
@@ -196,27 +196,37 @@ if( ! class_exists('Wc_Points_Menagment') ) :
          */
         private function assign_points($user_id, $new_points, $type, $message) {                            
 
-            $points = (int)get_field('points', 'user_'.$user_id);
+            $points = (int)get_user_meta($user_id)['points'][0];
+            $updated_points = 0;
 
-            if(empty($points)){ 
+            if(empty($points) && $points !== 0){ 
                 if( $type === 0)
-                    $new_points = 0;
-                update_user_meta($user_id , 'points', $new_points);
+                    $updated_points = 0;
+                update_user_meta($user_id , 'points', $updated_points);
 
             }
             else{
                 if($type === 1){
-                    $new_points = $points + $new_points;
+                    $updated_points = $points + $new_points;
+                }
+                elseif($type === 0){
+                    $updated_points = $points - $new_points;
                 }
                 else{
-                    $new_points = $points - $new_points;
+                    if($new_points > 0){
+                        $type = 1;
+                    }
+                    else{
+                        $type = 0;
+                    }
+                    $updated_points = $points + $new_points;
                 }
-                if($new_pointsts < 0 )
-                    $new_points = 0;
-                update_user_meta($user_id , 'points', $new_points);
+                if($updated_points < 0 )
+                $updated_points = 0;
+                update_user_meta($user_id , 'points', $updated_points);
             }         
             
-            $this->wcp_db->insert_data($user_id, (int)$_POST['points'], $message, $type);            
+            $this->wcp_db->insert_data($user_id, abs($new_points), $message, $type);            
         }
 
         /**
@@ -233,6 +243,33 @@ if( ! class_exists('Wc_Points_Menagment') ) :
         private function display_history($user_id) {
             $history = $this->wcp_db->get_history($user_id);
             include dirname( __FILE__ ) . '/views/admin/history.php';
+        }  
+
+        /**
+         * Import points
+         *
+         * Import points from file
+         *
+         * @date	27/09/2022
+         * @since	1.0.0
+         *
+         * @param	void
+         * @return	void
+         */
+        private function import_points() {
+            if(!empty($_FILES['import-file']['name'])){              
+                if ( $xlsx =  SimpleXLSX::parse($_FILES['import-file']['tmp_name']) ) {
+                    foreach($xlsx->rows() as $row){
+                        $user_id    = get_user_by_email($row[0])->ID;
+                        $new_points = (int)$row[1];
+                        $type       = 3;
+                        $message    = $row[2];
+                        $this->assign_points($user_id, $new_points, $type, $message);
+                    }
+                } else {
+                    echo  SimpleXLSX::parseError();
+                }                    
+            }
         }  
         
         /**
@@ -273,6 +310,10 @@ if( ! class_exists('Wc_Points_Menagment') ) :
                 $message    = $_POST['message'];   
                 $this->assign_points($user_id, $new_points, $type, $message);
             }
+            if(!empty($_POST['import-points'])){               
+                $this->import_points();
+            }
+
             if(!empty($_GET['history'])){
                 $this->display_history($_GET['history']);
             }

@@ -72,6 +72,17 @@
                     <input type="submit" name="assign-points" value="<?php  echo __('Assign points', 'wc-points-menagement');?>" class="!bg-primary hover:!bg-secondary text-secondary hover:text-white font-bold py-4 px-6 rounded-xl focus:outline-none focus:shadow-outline cursor-pointer" />
                 </div>
             </form>
+            <h2 class="mt-20 mb-12 block font-bold text-xl leading-tight text-black"><?php echo __('Import points', 'wc-points-menagement'); ?></h2>
+            <form class="bg-white shadow-lg rounded-lg p-8 text-base" action="<?php echo admin_url(sprintf(basename($_SERVER['REQUEST_URI']))); ?>" method="post" enctype="multipart/form-data">            
+                <div class="mb-6">    
+                    <label class="block mb-2 font-medium" for="import-file"><?php  echo __('Import xlsx file', 'wc-points-menagement');?></label>
+                    <input class="block w-full text-sm bg-gray-300 rounded-lg border cursor-pointer focus:outline-none" aria-describedby="file_input_help" id="import-file" name="import-file" type="file" accept=".xlsx">
+                    <p class="text-xs text-gray-400"><?php  echo __('File in format: ', 'wc-points-menagement');?>.xlsx</p>
+                </div>
+                <div class="flex items-center justify-between">
+                    <input type="submit" name="import-points" value="<?php  echo __('Import points', 'wc-points-menagement');?>" class="!bg-primary hover:!bg-secondary text-secondary hover:text-white font-bold py-4 px-6 rounded-xl focus:outline-none focus:shadow-outline cursor-pointer" />
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-08-03 00:46+0200\n"
-"PO-Revision-Date: 2022-08-03 00:46+0200\n"
+"POT-Creation-Date: 2022-09-27 16:53+0200\n"
+"PO-Revision-Date: 2022-09-27 16:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -98,6 +98,19 @@ msgstr "Wiadomość"
 msgid "Assign points"
 msgstr "Przypisz punkty"
 
+#: includes/views/admin/users-list.php:75
+#: includes/views/admin/users-list.php:83
+msgid "Import points"
+msgstr "Importuj punkty"
+
+#: includes/views/admin/users-list.php:78
+msgid "Import xlsx file"
+msgstr "Importuj plik xlsx"
+
+#: includes/views/admin/users-list.php:80
+msgid "File in format: "
+msgstr "Pliki w formacie "
+
 #: includes/views/templates/proceed-to-checkout-button.php:2
 msgid "You have no enough points"
 msgstr "Nie masz wystarczającej liczby punktów"
@@ -118,7 +131,7 @@ msgstr "Zamawiam"
 msgid "Oreder number #"
 msgstr "Zamówienie nr #"
 
-#: includes/wcp-woocommerce-integration.php:88
+#: includes/wcp-woocommerce-integration.php:67
 msgid "Checkout is not available whilst you have no enought points."
 msgstr ""
 "Zamówenie nie jest dostępne, jeżeli nie masz wystarczającej liczby punktów."
